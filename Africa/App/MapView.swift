@@ -22,27 +22,70 @@ struct MapView: View {
     
     var body: some View {
         //MARK: No1 Basic Map
-       // Map(coordinateRegion: $region)
+        // Map(coordinateRegion: $region)
         
         //MARK: No2 ADVANCED MAP
         Map(coordinateRegion: $region, annotationItems: locations, annotationContent:{item in
             //(A) PIN: Old Style (always static)
-//            MapPin(coordinate: item.location, tint: .accentColor)
+            //            MapPin(coordinate: item.location, tint: .accentColor)
             
             //(B) MARKER: NEW STYLE (Always static)
             //MapMarker(coordinate: item.location, tint: .accentColor)
             
             //(C) Custom Basic Anotation (it could be interacted)
             
+            //            MapAnnotation(coordinate: item.location){
+            //                Image("logo")
+            //                    .resizable()
+            //                    .scaledToFit()
+            //                    .frame(width: 32, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            //            }
+            
+            //(D) Custom advanced annotation ( it could be interactive)
             MapAnnotation(coordinate: item.location){
-                Image("logo")
+                MapAnnotationView(location:item)
+            }
+        })//: MAP
+        .overlay(
+            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing:12)
+            {
+                Image("compass")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 32, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            }
-            
-        })
-        
+                    .frame(width: 48, height: 48, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                
+                VStack(alignment: .leading, spacing:3){
+                    HStack{
+                        Text("Latitude:")
+                            .font(.footnote)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                        Text("\(region.center.latitude)")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                    }
+                    
+                    Divider()
+                    
+                    HStack{
+                        Text("Longitude:")
+                            .font(.footnote)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                        Text("\(region.center.longitude)")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                    }
+                }
+            }//: HSTACK
+            .padding(.vertical,12)
+            .padding(.horizontal,16)
+            .background(Color.black.cornerRadius(8).opacity(0.6))
+            .padding()
+            , alignment: .top
+        )
     }
 }
 
