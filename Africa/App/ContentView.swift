@@ -13,6 +13,7 @@ struct ContentView: View {
     let haptics = UIImpactFeedbackGenerator(style: .medium)
     
     @State private var isGridViewActive: Bool = false
+    let gridLayout: [GridItem] = Array(repeating: GridItem(.flexible()),count: 2)
     
     var body: some View {
         NavigationView{
@@ -24,16 +25,25 @@ struct ContentView: View {
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
                         ForEach(animals){animal in
-                            NavigationLink(
-                                destination: AnimalDetailView(animal:animal)){
+                            NavigationLink(destination: AnimalDetailView(animal:animal)){
                                 AnimalListItemView(animal: animal)
                             }//:LINK
                         }//:LOOP
                     }//:list
                 } else {
-                    Text("Grid view is active")
+                    ScrollView(.vertical, showsIndicators: false){
+                        LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10){
+                            ForEach(animals){ animal in
+                                NavigationLink(
+                                    destination: AnimalDetailView(animal: animal)){
+                                    AnimalGridItemView(animal: animal)
+                                }
+                                
+                            }
+                        }
+                    }
                 }//: Condition
-            } //: Groip
+            } //: Group
             .navigationBarTitle("Africa", displayMode:.large)
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){
