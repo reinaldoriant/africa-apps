@@ -2,7 +2,7 @@
 
 [![forthebadge made-with-android](https://forthebadge.com/images/badges/made-with-swift.svg)](https://www.apple.com/)
 
-Africa is  adventure encyclopedia of animals in africa with SwiftUI 2.0 framework.
+🦁 🐯 🐻 Africa is an adventure encyclopedia of animals in Africa with SwiftUI 2.0 framework.
 
 ## Status :
 
