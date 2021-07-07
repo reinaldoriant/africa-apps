@@ -39,6 +39,12 @@ struct AnimalDetailView: View {
                     InsetGalleryView(animal: animal)
                 }.padding(.horizontal)
                 //facts
+                
+                Group{
+                    HeadingView(headingImage: "questionmark.circle", headingText: "Did you know?")
+                    
+                    InsetFactView(animal: animal)
+                }.padding(.horizontal)
                 //description
                 //map
                 //link
