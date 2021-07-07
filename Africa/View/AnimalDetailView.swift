@@ -63,6 +63,12 @@ struct AnimalDetailView: View {
                     InsetMapView()
                 }.padding(.horizontal)
                 //link
+                
+                Group{
+                    HeadingView(headingImage: "books.vertical", headingText: "Learn more")
+                    
+                    ExternalWeblinkView(animal: animal)
+                }.padding(.horizontal)
             }//:Vstack
             .navigationBarTitle("Learn about \(animal.name)", displayMode: .inline)
         }//:Scroll
