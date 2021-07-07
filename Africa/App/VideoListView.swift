@@ -15,9 +15,12 @@ struct VideoListView: View {
         NavigationView {
             List{
                 ForEach(videos) { item in
-                    VideoListItem(video: item)
-                }
+                    VideoListItemView(video: item)
+                        .padding(.vertical,8)
+                }//:loop
             }//: list
+            .listStyle(InsetGroupedListStyle())
+            .navigationBarTitle("Videos",displayMode: .inline)
         }//: navigation
     }
 }
